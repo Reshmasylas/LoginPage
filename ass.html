@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign-up Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: rgb(96, 96, 223);
+            color: rgb(231, 208, 164);
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: rgb(178, 119, 233);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Login</h2>
+        <form id="signupForm">
+            <label for="email">Email:</label>
+            <input type="email" id="email" required><br>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" required><br>
+
+            <button type="submit">Sign Up</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('signupForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            var email = document.getElementById('email').value;
+            var password = document.getElementById('password').value;
+            var passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+            if (!email.includes('@') || !email.includes('.')) {
+                alert('Please enter a valid email address.');
+            } else if (!passwordRegex.test(password)) {
+                alert('Please enter a valid password.\n' +
+                      'Password must contain:\n' +
+                      ' - At least one uppercase letter\n' +
+                      ' - At least one special character\n' +
+                      ' - At least one number\n' +
+                      ' - Minimum 8 characters in total');
+            } else {
+                alert('Successful');
+            }
+        });
+    </script>
+</body>
+</html>
